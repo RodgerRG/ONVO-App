@@ -1,5 +1,6 @@
 using System.Collections;
 using System.IO;
+using System;
 namespace ONVO_App.GoonGenerator
 {
     public static class QuirkGenerator
@@ -35,8 +36,30 @@ namespace ONVO_App.GoonGenerator
         }
 
         private static string generateTransformationQuirk() {
-            string output = "Transform into a ";
+            Random rng = new Random();
+            string output = "";
             
+            string[] files = getTextFilePaths();
+            ArrayList nouns = new ArrayList();
+            ArrayList quirks = new ArrayList();
+
+            foreach(string s in files) {
+                
+                if(s.Contains("nouns")) {
+                    nouns = getNouns(s);
+                }
+
+                if(s.Contains("quirks")) {
+                    quirks = getQuirks(s);
+                }
+            }
+
+            output = string.Format("Transform into a {0}", nouns[rng.Next(0, nouns.Count)]);           
+
+            return output;
+        }
+
+        private static string[] getTextFilePaths() {
             string currentDir = System.IO.Directory.GetCurrentDirectory();
             string[] dirs = System.IO.Directory.GetDirectories(currentDir);
             string[] files = null;
@@ -46,22 +69,18 @@ namespace ONVO_App.GoonGenerator
                 }
             }
 
-            string nounsFilePath = "";
-            string quirksFilePath = "";
+            string[] output = new string[2];
 
             foreach(string s in files) {
                 if(s.Contains("nouns")) {
-                    nounsFilePath = s;
+                    output[0] = s;
                 }
                 if(s.Contains("quirks")) {
-                    quirksFilePath = s;
+                    output[1] = s;
                 }
             }
 
-            ArrayList nouns = getNouns(nounsFilePath);
-            ArrayList quirks = getQuirks(quirksFilePath);
             
-
             return output;
         }
 
