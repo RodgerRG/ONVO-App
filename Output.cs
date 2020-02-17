@@ -40,10 +40,19 @@ namespace ONVO_App
             DateTime time = DateTime.Now;
             dir = dir + string.Format("/Goon_File_@{0}-{1}-{2}", time.Day, time.Month, time.Year);
 
+            if(File.Exists(dir)) {
+                File.Delete(dir);
+            }
+
             StreamWriter f = new StreamWriter(File.Create(dir));
 
+            int ind = 1;
+
             foreach(Goon goon in goons) {
+                f.WriteLine(string.Format("Goon #{0}", ind));
                 f.WriteLine(goon + "\n");
+
+                ind++;
             }
 
             f.Close();
