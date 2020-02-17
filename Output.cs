@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using ONVO_App.GoonGenerator;
 
 namespace ONVO_App
@@ -26,6 +27,26 @@ namespace ONVO_App
 
                 ind++;
             }
+        }
+
+        public void printGoonstoFile(Goon[] goons)  {
+            string dir = Directory.GetCurrentDirectory();
+            dir = dir + "/logs";
+
+            if(!Directory.Exists(dir)) {
+                Directory.CreateDirectory(dir);
+            }
+
+            DateTime time = DateTime.Now;
+            dir = dir + string.Format("/Goon_File_@{0}-{1}-{2}", time.Day, time.Month, time.Year);
+
+            StreamWriter f = new StreamWriter(File.Create(dir));
+
+            foreach(Goon goon in goons) {
+                f.WriteLine(goon + "\n");
+            }
+
+            f.Close();
         }
     }
 }

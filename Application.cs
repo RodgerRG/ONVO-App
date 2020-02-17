@@ -9,9 +9,10 @@ namespace ONVO_App
         {
             GoonGenerator.GoonGenerator goonGen = new GoonGenerator.GoonGenerator();
             Output output = new Output();
-            Goon[] goons = goonGen.generateGoons(3, 1, 3, 8, 8, 13, 1, 1, 3, 4, 1, 1);
+            Goon[] goons = goonGen.generateGoons(300, 1, 3, 8, 8, 13, 1, 1, 3, 4, 1, 1);
 
             output.printGoons(goons);
+            output.printGoonstoFile(goons);
         }
     }
 }
