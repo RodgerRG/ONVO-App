@@ -7,6 +7,16 @@ namespace ONVO_App.GoonGenerator
 
         }
 
+        public Goon[] generateGoons(int number, int level, int minStat, int maxStat, int minHP, int maxHP, int minStartRP, int maxStartRP, int minMaxRP, int maxMaxRP, int minRPMod, int maxRPMod) {
+            Goon[] goons = new Goon[number];
+            
+            for(int i = 0; i < number; i++) {
+                goons[i] = generateGoon(level, minStat, maxStat, minHP, maxHP, minStartRP, maxStartRP, minMaxRP, maxMaxRP, minRPMod, maxRPMod);
+            }
+
+            return goons;
+        }
+
         public Goon generateGoon(int level, int minStat, int maxStat, int minHP, int maxHP, int minStartRP, int maxStartRP, int minMaxRP, int maxMaxRP, int minRPMod, int maxRPMod) {
             Random rng = new Random();
             int statsToGo = 25 + level;
@@ -30,8 +40,9 @@ namespace ONVO_App.GoonGenerator
                 stats[i] = stat;
             }
 
+            int ind = 0;
+
             while(!checkSum(stats, 25 + level)) {
-                int ind = 0;
                 int sum = 0;
 
                 foreach(int stat in stats) {
