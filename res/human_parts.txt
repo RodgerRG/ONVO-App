@@ -1,2 +1,2 @@
-foot
-arm
+a foot
+an arm

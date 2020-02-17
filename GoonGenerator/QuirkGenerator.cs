@@ -87,7 +87,7 @@ namespace ONVO_App.GoonGenerator
                     output = string.Format("The user has {0} growing out of {1}", nouns[rng.Next(0, nouns.Count)], humanParts[rng.Next(0, humanParts.Count)]);
                 break;
                 case MutationType.REPLACEMENT:
-                    output = string.Format("The user has a {0} instead of a {1}", nouns[rng.Next(0, nouns.Count)], humanParts[rng.Next(0, humanParts.Count)]);
+                    output = string.Format("The user has {0} instead of {1}", nouns[rng.Next(0, nouns.Count)], humanParts[rng.Next(0, humanParts.Count)]);
                 break;
             }   
 
@@ -113,7 +113,7 @@ namespace ONVO_App.GoonGenerator
                 }
             }
 
-            output = string.Format("Transform into a {0}", nouns[rng.Next(0, nouns.Count)]);    
+            output = string.Format("Transform into {0}", nouns[rng.Next(0, nouns.Count)]);    
 
             return output;
         }
