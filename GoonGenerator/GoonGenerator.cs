@@ -31,12 +31,31 @@ namespace ONVO_App.GoonGenerator
             }
 
             while(!checkSum(stats, 25 + level)) {
-                int ind = rng.Next(0,5);
-                if(stats[ind] + 1 > maxStat) {
-                    continue;
-                } else {
-                    stats[ind] += 1;
+                int ind = 0;
+                int sum = 0;
+
+                foreach(int stat in stats) {
+                    sum += stat;
                 }
+
+                if(sum < 25 + level) {
+                //don't increment a stat if it pushs the stat over the maximum set value.
+                    if(stats[ind % 5] + 1 > maxStat) {
+                        ind++;
+                        continue;
+                    } else {
+                        stats[ind % 5] += 1;
+                    }
+                } else {
+                    if(stats[ind % 5] - 1 < minStat) {
+                        ind++;
+                        continue;
+                    } else {
+                        stats[ind % 5] -= 1;
+                    }
+                }
+
+                ind++;
             }
 
             int hp = rng.Next(minHP, maxHP + 1);
