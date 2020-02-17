@@ -31,7 +31,40 @@ namespace ONVO_App.GoonGenerator
         }
 
         private static string generateMutationQuirk() {
+            Random rng = new Random();
             string output = "";
+            
+            string[] files = getTextFilePaths();
+            ArrayList nouns = new ArrayList();
+            ArrayList humanParts = new ArrayList();
+            ArrayList adjectives = new ArrayList();
+
+            foreach(string s in files) {
+                
+                if(s.Contains("nouns")) {
+                    nouns = getFile(s);
+                }
+
+                if(s.Contains("human_parts")) {
+                    humanParts = getFile(s);
+                }
+
+                if(s.Contains("adjectives")) {
+                    adjectives = getFile(s);
+                }
+            }
+
+            int mutationType = rng.Next(1, 3);
+
+            switch((MutationType) mutationType) {
+                case MutationType.ADDITIONAL:
+                    output = string.Format("The user has {0} growing out of {1}", nouns[rng.Next(0, nouns.Count)], humanParts[rng.Next(0, humanParts.Count)]);
+                break;
+                case MutationType.REPLACEMENT:
+                    output = string.Format("The user has a {0} instead of a {1}", nouns[rng.Next(0, nouns.Count)], humanParts[rng.Next(0, humanParts.Count)]);
+                break;
+            }   
+
             return output;
         }
 
@@ -46,15 +79,15 @@ namespace ONVO_App.GoonGenerator
             foreach(string s in files) {
                 
                 if(s.Contains("nouns")) {
-                    nouns = getNouns(s);
+                    nouns = getFile(s);
                 }
 
                 if(s.Contains("quirks")) {
-                    quirks = getQuirks(s);
+                    quirks = getFile(s);
                 }
             }
 
-            output = string.Format("Transform into a {0}", nouns[rng.Next(0, nouns.Count)]);           
+            output = string.Format("Transform into a {0}", nouns[rng.Next(0, nouns.Count)]);    
 
             return output;
         }
@@ -87,32 +120,43 @@ namespace ONVO_App.GoonGenerator
         /**
         TODO: Add threading to these two methods as they manipulate data streams
          */
-        private static ArrayList getNouns(string path) {
-            StreamReader nounStream = new StreamReader(File.OpenRead(path));
-            ArrayList nouns = new ArrayList();
+        private static ArrayList getFile(string path) {
+            StreamReader fileStream = new StreamReader(File.OpenRead(path));
+            ArrayList contents = new ArrayList();
 
-            while(!nounStream.EndOfStream) {
-                nouns.Add(nounStream.ReadLine());
+            while(!fileStream.EndOfStream) {
+                contents.Add(fileStream.ReadLine());
             }
 
-            return nouns;
-        }
-
-        private static ArrayList getQuirks(string path) {
-            StreamReader quirkStream = new StreamReader(File.OpenRead(path));
-            ArrayList quirks = new ArrayList();
-
-            while(!quirkStream.EndOfStream) {
-                quirks.Add(quirkStream.ReadLine());
-            }
-
-            return quirks;
+            return contents;
         }
 
         public enum QuirkType {
             EMITTER = 1, 
             TRANSFORMATION = 2, 
             MUTATION = 3,
+
+        }
+
+        /**
+        This may be needed, in case the current system has too many weird quirks being generated (like having a gun growing out of a kidney, etc.)
+         */
+        private enum HumanSystem {
+            NERVOUS = 1,
+            CIRCULATORY = 2,
+            ENDOCRINE = 3,
+            DIGESTIVE = 4,
+            IMMUNE = 5,
+            MUSCULAR = 6,
+            RENAL = 7,
+            RESPIRATORY = 8,
+            SKELETAL = 9,
+
+        }
+
+        private enum MutationType {
+            REPLACEMENT = 1,
+            ADDITIONAL = 2,
 
         }
     }
