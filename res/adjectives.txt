@@ -14,12 +14,10 @@ dense
 dumb
 electric
 fast
-fast
 good
 green
 heavy
 hot
-light
 light
 loud
 metallic
@@ -30,9 +28,9 @@ shallow
 sharp
 silent
 slow
-slow
 smart
 timid
 violet
 wet
 yellow
+double

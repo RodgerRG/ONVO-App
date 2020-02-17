@@ -70,3 +70,335 @@ weapons
 a whip
 wood
 wool
+ATM
+CD
+SUV
+TV
+an aardvark
+an abacus
+an accordion
+acetate
+acorns
+acrylic
+adrenaline
+aglets
+an airbag
+an alarm
+an albatross
+alcohol
+ale
+an alligator
+almonds
+an alpaca
+an alto sax
+aluminium
+ammunition
+ants
+an antelope
+armor
+an asparagus
+asphalt
+an avocado
+bacon
+a backpack
+a bag
+a bagel
+baggage
+a bagpipe
+bait
+a ball
+a balloon
+a banana
+a band
+a bandana
+a banjo
+a banner
+a barrel
+a baseball
+basil
+a basket
+a basketball
+a bass
+a bat
+a bathtub
+a bed
+a bee
+bees
+a beetle
+beetles
+a bell
+a belt
+belts
+berries
+a bicycle
+a bin
+a blowgun
+bombs
+a bomb
+books
+a bottle
+a boulder
+a box
+a brick
+bricks
+butterflies
+a cactus
+cancer
+a canteen
+caramel
+carbon
+carrots
+cats
+cement
+chairs
+a chair
+cheese
+cheesecake
+chilli
+citrus
+a clipboard
+cobwebs
+coins
+cones
+copper
+mercury
+silver
+tin
+uranium
+cords
+cows
+crabs
+cups
+cupcakes
+curry
+custard
+a cymbal
+darts
+debris
+deer
+denim
+a detector
+diamond
+coal
+donkeys
+drugs
+a duck
+dynamite
+earthworms
+echidnas
+an eel
+elderberries
+emus
+fabric
+fawns
+a fax machine
+a fedora
+a ferret
+fiberglass
+fish
+flesh
+flour
+foam
+a fox
+gadgets
+gas
+garlic
+gasoline
+gel
+glue
+a goose
+gum
+gunpowder
+hair
+ham
+a harmonica
+helium
+honey
+hummus
+hydrogen
+ice cream
+iron
+a jaguar
+a Jeep
+jelly
+jellyfish
+jewels
+ketchup
+kidneys
+a kite
+a knot
+a koala
+lacquerware
+a lamp
+lard
+leaves
+leeks
+legumes
+lemons
+a leopard
+leprosy
+lettuce
+limestone
+a lion
+a lizard
+lotion
+lumber
+luncheon meat
+lycra
+a lynx
+macaroni
+machines
+machinery
+magnets
+marble
+marmalade
+a mask
+mayonnaise
+medicine
+microphone
+microwave
+molasses
+a monkey
+mozzerella
+mushrooms
+a mushroom
+neon
+nickel
+nitrogen
+noodles
+nutmeg
+obsidian
+an octopus
+an octagon
+an otter
+an oven
+oxygen
+ozone
+a paddle
+a panda
+parchment
+a parrot
+pasta
+pastries
+a pelican
+penicillin
+pepper
+salami
+perfume
+a piano
+a pig
+a pidgeon
+a pin
+pineapple
+a pipe
+pizza
+plaster
+plastic
+plums
+plywood
+pomegranites
+popcorn
+potatoes
+a puddle
+quicksand
+a radish
+rails
+ranch sauce
+raspberries
+reindeer
+a rhinoceros
+rhubarb
+ribs
+a ribbon
+rice
+rings
+a rock
+a room
+a rooster
+rubber
+a rug
+rust
+salmon
+lava
+magma
+scarves
+a scarf
+swords
+a sword
+scissors
+a scope
+a screwdriver
+a seat
+seaweed
+sesame
+shampoo
+shrimp
+silicon
+a sledgehammer
+silk
+a sink
+a car
+a bike
+a motorcycle
+soda
+spaghetti
+a spatula
+a loudspeaker
+a megaphone
+spice
+sponge
+a squid
+steam
+stew
+soup
+sweat
+syrup
+tape
+tea
+a thumb
+thorns
+timber
+a tyre
+tissue paper
+titanium
+toffee
+tofu
+a tortoise
+a turtle
+toys
+a train
+trash
+a tree
+a truck
+a trombone
+a flute
+a drum
+tuna
+tweezers
+a typewriter
+an umbrella
+underwear
+vanilla
+vaccine
+vegetables
+velvet
+vermicelli
+a vibraphone
+a computer
+a viola
+vinegar
+vodka
+a volcano
+a vulture
+a walnut
+a walrus
+wasabi
+waste
+watermelon
+weeds
+wheat
+worms
+a wrench
+yeast
+a yo-yo
+zinc
