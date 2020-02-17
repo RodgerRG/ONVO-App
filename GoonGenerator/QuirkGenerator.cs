@@ -80,7 +80,7 @@ namespace ONVO_App.GoonGenerator
                 }
             }
 
-            int mutationType = rng.Next(1, 3);
+            int mutationType = rng.Next(1, 4);
 
             switch((MutationType) mutationType) {
                 case MutationType.ADDITIONAL:
@@ -88,6 +88,9 @@ namespace ONVO_App.GoonGenerator
                 break;
                 case MutationType.REPLACEMENT:
                     output = string.Format("The user has {0} instead of {1}", nouns[rng.Next(0, nouns.Count)], humanParts[rng.Next(0, humanParts.Count)]);
+                break;
+                case MutationType.FORM:
+                    output = string.Format("The user is made of {0}", nouns[rng.Next(0, nouns.Count)]);
                 break;
             }   
 
@@ -171,7 +174,7 @@ namespace ONVO_App.GoonGenerator
         private enum MutationType {
             REPLACEMENT = 1,
             ADDITIONAL = 2,
-
+            FORM = 3,
         }
 
         private enum EmitterType {
