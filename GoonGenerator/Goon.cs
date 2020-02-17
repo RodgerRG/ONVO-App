@@ -161,5 +161,9 @@ namespace ONVO_App.GoonGenerator
         public static void setRPMod(int mod) {
            factoryRPMod = mod;
         }
+
+        public override string ToString() {
+            return string.Format("currentHP: {0} \nmaxHP: {1} \nCurrent RP: {2} \nMaximum RP: {3} \nRP Modifier: {4} \nPower: {5} \nSpeed: {6} \nTechnique: {7} \nIntelligence: {8} \nCharm: {9}", currentHP, maxHP, currentRP, maxRP, rpMod, power, speed, technique, intelligence, charisma);
+        }
     }
 }

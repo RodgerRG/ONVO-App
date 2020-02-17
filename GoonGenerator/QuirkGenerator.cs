@@ -26,7 +26,33 @@ namespace ONVO_App.GoonGenerator
         }
 
         private static string generateEmitterQuirk() {
+            Random rng = new Random();
             string output = "";
+            
+            string[] files = getTextFilePaths();
+            ArrayList nouns = new ArrayList();
+
+            foreach(string s in files) {
+                
+                if(s.Contains("concrete_nouns")) {
+                    nouns.AddRange(getFile(s));
+                }
+
+                if(s.Contains("abstract_nouns")) {
+                    nouns.AddRange(getFile(s));
+                }
+            }
+
+            int emitterType = rng.Next(1, 3);
+            switch((EmitterType) emitterType) {
+                case EmitterType.CREATE:
+                    output = string.Format("The user is able to create and manipulate {0}", nouns[rng.Next(0, nouns.Count)]);
+                break;
+                case EmitterType.MANIPULATE:
+                    output = string.Format("The user is able to manipulate {0}", nouns[rng.Next(0, nouns.Count)]);
+                break;
+            }
+
             return output;
         }
 
@@ -41,7 +67,7 @@ namespace ONVO_App.GoonGenerator
 
             foreach(string s in files) {
                 
-                if(s.Contains("nouns")) {
+                if(s.Contains("concrete_nouns")) {
                     nouns = getFile(s);
                 }
 
@@ -78,7 +104,7 @@ namespace ONVO_App.GoonGenerator
 
             foreach(string s in files) {
                 
-                if(s.Contains("nouns")) {
+                if(s.Contains("concrete_nouns")) {
                     nouns = getFile(s);
                 }
 
@@ -101,24 +127,12 @@ namespace ONVO_App.GoonGenerator
                     files = System.IO.Directory.GetFiles(s);
                 }
             }
-
-            string[] output = new string[2];
-
-            foreach(string s in files) {
-                if(s.Contains("nouns")) {
-                    output[0] = s;
-                }
-                if(s.Contains("quirks")) {
-                    output[1] = s;
-                }
-            }
-
-            
-            return output;
+          
+            return files;
         }
 
         /**
-        TODO: Add threading to these two methods as they manipulate data streams
+        TODO: Add threading to this method as it manipulates data streams
          */
         private static ArrayList getFile(string path) {
             StreamReader fileStream = new StreamReader(File.OpenRead(path));
@@ -158,6 +172,11 @@ namespace ONVO_App.GoonGenerator
             REPLACEMENT = 1,
             ADDITIONAL = 2,
 
+        }
+
+        private enum EmitterType {
+            MANIPULATE = 1,
+            CREATE = 2,
         }
     }
 }
