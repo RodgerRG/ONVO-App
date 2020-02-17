@@ -1,2 +1,14 @@
-a foot
 an arm
+an eye
+both arms
+both eyes
+both feet
+both legs
+a foot
+a leg
+their hair
+their head
+their muscles
+their organs
+their teeth
+their torso

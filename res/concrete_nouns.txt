@@ -1,5 +1,72 @@
+acid
+an egg
+an eraser
+ash
+beans
+blood
+bone
+brick
+a chain
+chains
+a chainsaw
+cloud
+coin
+concrete
+crystal
+dust
+explosives
+eyes
+flame
+fog
+food
+a fork
+forks
+glass
+gold
+grass
 a gun
+ice
+ink
+insects
+a knife
+knives
+lightning
+metal
+milk
+money
+mud
+oil
+paint
+pans
+paper
 a pen
 a pencil
-an eraser
-concrete
+pillows
+poison
+pottery
+rope
+salt
+sand
+a saw
+saws
+a shield
+shoes
+a shovel
+slime
+smoke
+snow
+soap
+spikes
+stone
+sugar
+a tentacle
+tentacles
+a tongue
+tongues
+vines
+water
+a weapon
+weapons
+a whip
+wood
+wool
