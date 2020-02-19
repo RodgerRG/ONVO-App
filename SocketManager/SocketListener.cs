@@ -73,13 +73,14 @@ namespace ONVO_App.SocketManager
 
             content = state.sb.ToString();
             if(content.IndexOf("<EOF>") > -1) {
-                //TODO: Add parameters on constructor to allow for this to be read elsewhere...
+                //TODO: Add code to handle whatever the message is. (Check query, return correct value from DB or whatever)
                 Send(handler, content);
             } else {
                 handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
             }
         }
 
+        //TODO: rewrite this to send the correct data back, being the JSON for the endpoint in question instead of mirroring the req.
         private void Send(Socket handler, String data) {    
             byte[] byteData = Encoding.ASCII.GetBytes(data);  
     

@@ -6,4 +6,8 @@
     <RootNamespace>ONVO_App</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="4.7.1" />
+  </ItemGroup>
+
 </Project>

@@ -15,7 +15,7 @@ namespace ONVO_App.SocketManager
 
         public void start() {
             Task t = new Task(createListener);
-            t.ContinueWith(checkListeners, listeners);
+            t.ContinueWith(checkListeners, this);
 
             t.Start();
         }
