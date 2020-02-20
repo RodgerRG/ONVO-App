@@ -1,5 +1,4 @@
 ﻿using ONVO_App.GoonGenerator;
-using ONVO_App.SocketManager;
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +19,6 @@ namespace ONVO_App
             output.printGoonstoFile(goons);
 
             CreateHostBuilder(args).Build().Run();
-
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
