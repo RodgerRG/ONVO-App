@@ -15,7 +15,7 @@ namespace ONVO_App.Database
             string input = reader.ReadLine();
             string[] inputs = input.Split(" ");
 
-            if(inputs[0] == "Database") {
+            if(inputs[0] == "database") {
                 databaseURI = inputs[1];
             }
 
