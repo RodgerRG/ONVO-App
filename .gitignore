@@ -1,6 +1,12 @@
+#VS Code files
+*.code-workspace
+
 #binary files
 bin/
 obj/
 
 #any log files
 logs/
+
+#keys and stuff
+keys.txt

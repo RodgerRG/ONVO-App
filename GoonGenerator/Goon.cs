@@ -57,6 +57,22 @@ namespace ONVO_App.GoonGenerator
             return currentRP;
         }
 
+        public int getMaxHP() {
+            return maxHP;
+        }
+
+        public int getMaxRP() {
+            return maxRP;
+        }
+
+        public int getRPMod() {
+            return rpMod;
+        }
+
+        public string getQuirk() {
+            return quirk;
+        }
+
         public void changeHealth(int amount) {
             currentHP += amount;
         }
