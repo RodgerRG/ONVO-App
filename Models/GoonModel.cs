@@ -3,7 +3,6 @@ namespace ONVO_App.Models
 {
     public class GoonModel
     {
-        public int id {get; set;}
         public int charisma {get; set;}
         public int power {get; set;}
         public int speed {get; set;}
@@ -18,7 +17,17 @@ namespace ONVO_App.Models
 
         public GoonModel(int charisma, int power, int speed, int technique, int intelligence, int maxHP, int currentHP, 
         int maxRP, int currentRP, int rpMod, string quirk) {
-
+            this.charisma = charisma;
+            this.power = power;
+            this.speed = speed;
+            this.technique = technique;
+            this.intelligence = intelligence;
+            this.maxHP = maxHP;
+            this.currentHP = currentHP;
+            this.maxRP = maxRP;
+            this.currentRP = currentRP;
+            this.rpMod = rpMod;
+            this.quirk = quirk;
         }
 
         public static explicit operator GoonModel(Goon g) => new GoonModel(
