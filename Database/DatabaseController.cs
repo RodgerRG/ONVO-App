@@ -3,6 +3,9 @@ using System.Net.Http;
 using System.IO;
 using ONVO_App.Models;
 using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 namespace ONVO_App.Database
 {
     public class DatabaseController
@@ -19,8 +22,6 @@ namespace ONVO_App.Database
                 databaseURI = inputs[1];
             }
 
-            Console.WriteLine(databaseURI);
-
             reader.Close();
         }
 
@@ -35,6 +36,30 @@ namespace ONVO_App.Database
             } else {
                 //TODO: Add some handling to decide what to do depending on the error here.s
             }
+        }
+
+        public async Task<List<GoonModel>> getGoons() {
+            string endpoint = "/goon-table/.json";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(databaseURI + endpoint);
+
+            Stream jsonStream = await response.Content.ReadAsStreamAsync();
+
+            JsonDocument jsonDoc = await JsonDocument.ParseAsync(jsonStream);
+
+            JsonElement.ObjectEnumerator jsonEnumerator = jsonDoc.RootElement.EnumerateObject();
+
+            List<GoonModel> models = new List<GoonModel>();
+
+            while(jsonEnumerator.MoveNext()) {
+                string nestedJson = jsonEnumerator.Current.Value.GetRawText();
+                Console.WriteLine(nestedJson);
+                GoonModel model = JsonSerializer.Deserialize<GoonModel>(nestedJson);
+                models.Add(model);
+            }
+
+            return models;
         }
     }
 }

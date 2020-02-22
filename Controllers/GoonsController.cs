@@ -41,9 +41,10 @@ namespace ONVO_App.Controllers
             return models;
         }
 
-        [HttpGet]
+        [HttpGet("GetGoons")]
         public GoonModel[] GetGoons() {
-            GoonModel[] goons = new GoonModel[1];
+            dbController = new DatabaseController();
+            GoonModel[] goons = dbController.getGoons().Result.ToArray();
 
             return goons;
         }

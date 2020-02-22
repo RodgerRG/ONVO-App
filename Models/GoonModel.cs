@@ -30,6 +30,10 @@ namespace ONVO_App.Models
             this.quirk = quirk;
         }
 
+        public GoonModel() {
+            
+        }
+
         public static explicit operator GoonModel(Goon g) => new GoonModel(
             g.getCharisma(), g.getPower(), g.getSpeed(), g.getTechnique(), g.getIntelligence(),
             g.getMaxHP(), g.getCurrentHP(), g.getMaxRP(), g.getCurrentRP(), g.getRPMod(), g.getQuirk()
