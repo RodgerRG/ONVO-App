@@ -14,7 +14,7 @@ namespace ONVO_App
         {
             //CreateHostBuilder(args).Build().Run();
 
-            SkillGenerator gen = new SkillGenerator(0.5, 4, 0, 0.3);
+            SkillGenerator gen = new SkillGenerator(0.5, 2, 0, 0.3);
 
             string path = Directory.GetCurrentDirectory() + "/logs/";
             string fileName = string.Format("Skill_File_@{0}-{1}-{2}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);

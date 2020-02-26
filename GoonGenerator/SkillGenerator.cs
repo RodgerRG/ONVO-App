@@ -39,19 +39,19 @@ namespace ONVO_App.GoonGenerator
             switch(rng.Next(1, 3)) {
                 //in this case, isDispel is false;
                 case 1 :
-                    skill = allocatePoints(points, false);
+                    skill = allocatePoints(points, false, cost);
                 break;
 
                 //in this case, is Dispel is true;
                 case 2 :
-                    skill = allocatePoints(points, true);
+                    skill = allocatePoints(points, true, cost);
                 break;
             }
 
             return skill;
         }
 
-        private Skill allocatePoints(int points, bool isDispel) {
+        private Skill allocatePoints(int points, bool isDispel, int cost) {
             Random rng = new Random();
 
             int currentPoints = points;
@@ -71,6 +71,10 @@ namespace ONVO_App.GoonGenerator
                     
                     //alloc as keyword
                     case 2:
+                        if(isDispel) {
+                            continue;
+                        }
+
                         pointsToSpend = rng.Next(1, currentPoints);
                         if(!keywords.Contains(skillCosts[Math.Min(pointsToSpend, 6)].ToString())) {
                             keywords.Add(skillCosts[Math.Min(pointsToSpend, 6)].ToString());
@@ -81,24 +85,47 @@ namespace ONVO_App.GoonGenerator
                     //alloc as DoT
                     case 3:
                         pointsToSpend = rng.Next(1, currentPoints);
+
                         switch(dotCosts[Math.Min(pointsToSpend, 3)]) {
                             case StatusKeywords.BLEED:
-                                bleedCount += 1;
+                                if(isDispel) {
+                                    if(!keywords.Contains("Dispel BLEED")) {
+                                        keywords.Add("Dispel BLEED");
+                                        currentPoints -= Math.Min(pointsToSpend, 3);
+                                    }
+                                } else {
+                                    bleedCount += 1;
+                                    currentPoints -= Math.Min(pointsToSpend, 3);
+                                }
                             break;
                             case StatusKeywords.BLIGHT:
-                                blightCount += 1;
+                                if(isDispel) {
+                                    if(!keywords.Contains("Dispel BLIGHT")) {
+                                        keywords.Add("Dispel BLIGHT");
+                                        currentPoints -= Math.Min(pointsToSpend, 3);
+                                    }
+                                } else {
+                                    blightCount += 1;
+                                    currentPoints -= Math.Min(pointsToSpend, 3);
+                                }
                             break;
                             case StatusKeywords.BURN:
-                                burnCount += 1;
+                                if(isDispel) {
+                                    if(!keywords.Contains("Dispel BLIGHT")) {
+                                        keywords.Add("Dispel BLIGHT");
+                                        currentPoints -= Math.Min(pointsToSpend, 3);
+                                    }
+                                } else {
+                                    burnCount += 1;
+                                    currentPoints -= Math.Min(pointsToSpend, 3);
+                                }
                             break;
                         }
-
-                        currentPoints -= Math.Min(pointsToSpend, 3);
                     break;
                 }
             }
 
-            return new Skill(damage, keywords.ToArray(Type.GetType("System.String")) as string[], isDispel, burnCount, bleedCount, blightCount);
+            return new Skill(cost, damage, keywords.ToArray(Type.GetType("System.String")) as string[], isDispel, burnCount, bleedCount, blightCount);
         }
 
         private void makeKeywordTable() {
@@ -139,19 +166,21 @@ namespace ONVO_App.GoonGenerator
     }
 
     public struct Skill {
+        private int cost;
         private int damage;
         private string[] keywords;
         private bool isDispel;
 
         private int burn, bleed, blight;
 
-        public Skill(int damage, string[] keywords, bool isDispel, int burn, int bleed, int blight) {
+        public Skill(int cost, int damage, string[] keywords, bool isDispel, int burn, int bleed, int blight) {
             this.damage = damage;
             this.keywords = keywords;
             this.isDispel = isDispel;
             this.burn = burn;
             this.blight = blight;
             this.bleed = bleed;
+            this.cost = cost;
         }
 
         public override string ToString() {
@@ -163,7 +192,7 @@ namespace ONVO_App.GoonGenerator
                 isHeal = "Damage";
             }
 
-            return string.Format("{0}: {1} \nBurn: {2} \nBlight: {3} \nBleed: {4} \nKeywords: {5}", isHeal, damage, burn, blight, bleed, string.Join(", ", keywords));
+            return string.Format("Cost: {0} \n{1}: {2} \nBurn: {3} \nBlight: {4} \nBleed: {5} \nKeywords: {6}", cost, isHeal, damage, burn, blight, bleed, string.Join(", ", keywords));
         }
     }
 }
