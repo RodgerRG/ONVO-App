@@ -91,9 +91,6 @@ namespace ONVO_App.Structs
             return skills;
         }
 
-        public override string ToString() {
-            return string.Format("Current HP: {0} \nMaximum HP: {1} \nCurrent RP: {2} \nMaximum RP: {3} \nRP Modifier: {4} \nPower: {5} \nSpeed: {6} \nTechnique: {7} \nIntelligence: {8} \nCharm: {9} \nQuirk: {10}", 
-            currentHP, maxHP, currentRP, maxRP, rpMod, power, speed, technique, intelligence, charisma, quirk);
-        }
+        public abstract override string ToString();
     }
 }
