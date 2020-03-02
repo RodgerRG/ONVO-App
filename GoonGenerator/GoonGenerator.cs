@@ -1,4 +1,5 @@
 using System;
+using ONVO_App.Structs;
 namespace ONVO_App.GoonGenerator
 {
     public class GoonGenerator

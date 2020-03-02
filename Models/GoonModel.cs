@@ -1,4 +1,5 @@
 using ONVO_App.GoonGenerator;
+using ONVO_App.Structs;
 namespace ONVO_App.Models
 {
     public class GoonModel
@@ -36,7 +37,7 @@ namespace ONVO_App.Models
             
         }
 
-        public static explicit operator GoonModel(Goon g) => new GoonModel(
+        public static explicit operator GoonModel(Character g) => new GoonModel(
             g.getCharisma(), g.getPower(), g.getSpeed(), g.getTechnique(), g.getIntelligence(),
             g.getMaxHP(), g.getCurrentHP(), g.getMaxRP(), g.getCurrentRP(), g.getRPMod(), g.getQuirk(), g.getSkills()
         );

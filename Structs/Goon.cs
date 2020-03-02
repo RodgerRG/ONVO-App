@@ -1,33 +1,10 @@
 using System;
-namespace ONVO_App.GoonGenerator
+using ONVO_App.GoonGenerator;
+namespace ONVO_App.Structs
 {
-    public struct Goon
+    public class Goon : Character
     {
-        private int charisma;
-        private int power;
-        private int speed;
-        private int technique;
-        private int intelligence;
-        private int maxHP;
-        private int currentHP;
-        private int maxRP;
-        private int currentRP;
-        private int rpMod;
-        private string quirk;
-
-        private Skill[] skills;
-
-        private Goon(int charisma, int power, int speed, int technique, int intelligence, int maxHP, int maxRP, int rpMod, int startingRP) {
-            this.charisma = charisma;
-            this.power = power;
-            this.speed = speed;
-            this.technique = technique;
-            this.intelligence = intelligence;
-            this.maxHP = maxHP;
-            this.maxRP = maxRP;
-            this.currentRP = startingRP;
-            this.rpMod = rpMod;
-            this.currentHP = maxHP;
+        private Goon(int charisma, int power, int speed, int technique, int intelligence, int maxHP, int maxRP, int rpMod, int startingRP) : base(charisma, power, speed, technique, intelligence, maxHP, maxRP, rpMod, startingRP){
             this.quirk = QuirkGenerator.generateQuirk();
 
             int[] costs = new int[4];
@@ -37,68 +14,6 @@ namespace ONVO_App.GoonGenerator
             }
 
             this.skills = new SkillGenerator(0.5, 2, 0.2, 0.3).generateSkills(0, costs);
-        }
-
-        public int getCharisma() {
-            return charisma;
-        }
-
-        public int getPower() {
-            return power;
-        }
-
-        public int getSpeed() {
-            return speed;
-        }
-
-        public int getTechnique() {
-            return technique;
-        }
-
-        public int getIntelligence() {
-            return intelligence;
-        }
-
-        public int getCurrentHP() {
-            return currentHP;
-        }
-
-        public int getCurrentRP() {
-            return currentRP;
-        }
-
-        public int getMaxHP() {
-            return maxHP;
-        }
-
-        public int getMaxRP() {
-            return maxRP;
-        }
-
-        public int getRPMod() {
-            return rpMod;
-        }
-
-        public string getQuirk() {
-            return quirk;
-        }
-
-        public void changeHealth(int amount) {
-            currentHP += amount;
-        }
-
-        public bool spendRP(int amount) {
-            currentRP += amount;
-            if(currentRP < 0) {
-                currentRP -= amount;
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        public Skill[] getSkills() {
-            return skills;
         }
 
         private static int factoryCharm = 1;

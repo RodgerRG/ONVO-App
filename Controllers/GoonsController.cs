@@ -5,6 +5,7 @@ using System.Net;
 using ONVO_App.GoonGenerator;
 using ONVO_App.Models;
 using ONVO_App.Database;
+using ONVO_App.Structs;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Threading;
