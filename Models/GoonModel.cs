@@ -14,9 +14,10 @@ namespace ONVO_App.Models
         public int currentRP {get; set;}
         public int rpMod {get; set;}
         public string quirk {get; set;}
+        public Skill[] skills {get; set;}
 
         public GoonModel(int charisma, int power, int speed, int technique, int intelligence, int maxHP, int currentHP, 
-        int maxRP, int currentRP, int rpMod, string quirk) {
+        int maxRP, int currentRP, int rpMod, string quirk, Skill[] skills) {
             this.charisma = charisma;
             this.power = power;
             this.speed = speed;
@@ -28,6 +29,7 @@ namespace ONVO_App.Models
             this.currentRP = currentRP;
             this.rpMod = rpMod;
             this.quirk = quirk;
+            this.skills = skills;
         }
 
         public GoonModel() {
@@ -36,7 +38,7 @@ namespace ONVO_App.Models
 
         public static explicit operator GoonModel(Goon g) => new GoonModel(
             g.getCharisma(), g.getPower(), g.getSpeed(), g.getTechnique(), g.getIntelligence(),
-            g.getMaxHP(), g.getCurrentHP(), g.getMaxRP(), g.getCurrentRP(), g.getRPMod(), g.getQuirk()
+            g.getMaxHP(), g.getCurrentHP(), g.getMaxRP(), g.getCurrentRP(), g.getRPMod(), g.getQuirk(), g.getSkills()
         );
     }
 }

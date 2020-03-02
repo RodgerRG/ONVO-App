@@ -1,3 +1,4 @@
+using System;
 namespace ONVO_App.GoonGenerator
 {
     public struct Goon
@@ -12,8 +13,9 @@ namespace ONVO_App.GoonGenerator
         private int maxRP;
         private int currentRP;
         private int rpMod;
-
         private string quirk;
+
+        private Skill[] skills;
 
         private Goon(int charisma, int power, int speed, int technique, int intelligence, int maxHP, int maxRP, int rpMod, int startingRP) {
             this.charisma = charisma;
@@ -27,6 +29,14 @@ namespace ONVO_App.GoonGenerator
             this.rpMod = rpMod;
             this.currentHP = maxHP;
             this.quirk = QuirkGenerator.generateQuirk();
+
+            int[] costs = new int[4];
+            Random rng = new Random();
+            for(int i = 0; i < rng.Next(4, 7); i++) {
+                costs[i] = rng.Next(1, maxRP + 1);
+            }
+
+            this.skills = new SkillGenerator(0.5, 2, 0.2, 0.3).generateSkills(0, costs);
         }
 
         public int getCharisma() {
@@ -85,6 +95,10 @@ namespace ONVO_App.GoonGenerator
             } else {
                 return true;
             }
+        }
+
+        public Skill[] getSkills() {
+            return skills;
         }
 
         private static int factoryCharm = 1;

@@ -30,6 +30,16 @@ namespace ONVO_App.GoonGenerator
             makeDoTTable();
         }
 
+        public Skill[] generateSkills(int CR, int[] costs) {
+            Skill[] skills = new Skill[costs.Length];
+            
+            for(int i = 0; i < costs.Length; i++) {
+                skills[i] = makeSkill(CR, costs[i]);
+            }
+
+            return skills;
+        }
+
         public Skill makeSkill(int CR, int cost) {
             Random rng = new Random();
             int points = (int) Math.Round((double) (CR * CRtoPointRatio + cost * levelToPointRatio));
