@@ -66,61 +66,78 @@ namespace ONVO_App.Controllers
         }
 
         [HttpPost("SetGoonMinStat/{number}")]
-        public void SetGoonMinStat(int number) {
+        public IActionResult SetGoonMinStat(int number) {
             GoonsController.minStat = number;
+
+            return Accepted();
 
         }
 
         [HttpPost("SetGoonMaxStat/{number}")]
-        public void SetGoonMaxStat(int number) {
+        public IActionResult SetGoonMaxStat(int number) {
             GoonsController.maxStat = number;
 
+            return Accepted();
         }
 
         [HttpPost("SetGoonMinHP/{number}")]
-        public void SetGoonMinHP( int number) {
+        public IActionResult SetGoonMinHP( int number) {
             GoonsController.minHP = number;
 
+            return Accepted();
         }
 
         [HttpPost("SetGoonMaxHP/{number}")]
-        public void SetGoonMaxHP(int number) {
+        public IActionResult SetGoonMaxHP(int number) {
             GoonsController.maxHP = number;
+
+            return Accepted();
 
         }
 
         [HttpPost("SetGoonMinStartRP/{number}")]
-        public void SetGoonMinStartRP(int number) {
+        public IActionResult SetGoonMinStartRP(int number) {
             GoonsController.minStartRP = number;
+
+            return Accepted();
         }
 
         [HttpPost("SetGoonMaxStartRP/{number}")]
-        public void SetGoonMaxStartRP(int number) {
+        public IActionResult SetGoonMaxStartRP(int number) {
             GoonsController.maxStartRP = number;
+
+            return Accepted();
 
         }
 
         [HttpPost("SetGoonMinRPMod/{number}")]
-        public void SetGoonMinRPMod( int number) {
+        public IActionResult SetGoonMinRPMod( int number) {
             GoonsController.minRPMod = number;
+
+            return Accepted();
 
         }
 
         [HttpPost("SetGoonMaxRPMod/{number}")]
-        public void SetGoonMaxRPMod(int number) {
+        public IActionResult SetGoonMaxRPMod(int number) {
             GoonsController.maxRPMod = number;
+
+            return Accepted();
 
         }
 
         [HttpPost("SetGoonMinMaxRP/{number}")]
-        public void SetGoonMinMaxRP( int number) {
+        public IActionResult SetGoonMinMaxRP( int number) {
             GoonsController.minMaxRP = number;
 
+            return Accepted();
         }
 
         [HttpPost("SetGoonMaxMaxRP/{number}")]
-        public void SetGoonMaxMaxRP(int number) {
+        public IActionResult SetGoonMaxMaxRP(int number) {
             GoonsController.maxMaxRP = number;
+
+            return Accepted();
         }
     }
 }

@@ -61,5 +61,22 @@ namespace ONVO_App.Database
 
             return models;
         }
+
+        public async void sendAccount(AccountModel acc) {
+            string endpoint = "/account-table/.json";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.PostAsJsonAsync<AccountModel>(databaseURI + endpoint, acc);
+
+            if((int)response.StatusCode == 200) {
+
+            } else {
+
+            }
+        }
+
+        public async Task<AccountModel> GetAccount(string username) {
+            
+        }
     }
 }
