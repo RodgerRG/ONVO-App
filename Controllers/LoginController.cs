@@ -12,10 +12,14 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Web;
+using System.Net.Http;
+using System.IO;
+using System.Text.Json;
 namespace ONVO_App.Controllers
 {
     [ApiController]
-    [Route("/Login")]
+    [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
         private DatabaseController databaseController;
@@ -25,8 +29,17 @@ namespace ONVO_App.Controllers
         }
 
         [HttpPost("login")]
-        public void login(string username, string passwordHash) {
-            Account acc = databaseController.getAccount(username);
+        public IActionResult login([FromBody] CredentialModel credentials) {
+            string username = credentials.username;
+            string password = credentials.password;
+
+            AccountModel acc = databaseController.getAccount(username).Result;
+            if(hashPass(Convert.FromBase64String(acc.salt), password) == acc.password){
+                //TODO: Write in login procedures here, namely token generation to allow for easy communications/auth.
+                return Accepted();
+            } else {
+                return Unauthorized("Bad Login Credentials");
+            }
         }
 
         [HttpPost("signup")]

@@ -75,8 +75,50 @@ namespace ONVO_App.Database
             }
         }
 
-        public async Task<AccountModel> GetAccount(string username) {
-            
+        public async Task<List<AccountModel>> getAccounts(string username) {
+            string endpoint = "/account-table/.json";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage resp = await client.GetAsync(databaseURI + endpoint);
+
+            Stream jsonStream = await resp.Content.ReadAsStreamAsync();
+            JsonDocument jsonDoc = await JsonDocument.ParseAsync(jsonStream);
+            JsonElement.ObjectEnumerator jsonEnum = jsonDoc.RootElement.EnumerateObject();
+
+            List<AccountModel> models = new List<AccountModel>();
+
+            while(jsonEnum.MoveNext()) {
+                string nestedJson = jsonEnum.Current.Value.GetRawText();
+                AccountModel model = JsonSerializer.Deserialize<AccountModel>(nestedJson);
+
+                models.Add(model);
+            }
+
+            return models;
+        }
+
+        public async Task<AccountModel> getAccount(string username) {
+            string endpoint = "/account-table/.json";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage resp = await client.GetAsync(databaseURI + endpoint);
+
+            Stream jsonStream = await resp.Content.ReadAsStreamAsync();
+            JsonDocument jsonDoc = await JsonDocument.ParseAsync(jsonStream);
+            JsonElement.ObjectEnumerator jsonEnum = jsonDoc.RootElement.EnumerateObject();
+
+            List<AccountModel> models = new List<AccountModel>();
+
+            while(jsonEnum.MoveNext()) {
+                string nestedJson = jsonEnum.Current.Value.GetRawText();
+                AccountModel model = JsonSerializer.Deserialize<AccountModel>(nestedJson);
+
+                if(model.username == username) {
+                    return model;
+                }
+            }
+
+            return null;
         }
     }
 }
