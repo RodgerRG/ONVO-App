@@ -74,7 +74,7 @@ namespace ONVO_App.Structs
         }
 
         public void changeHealth(int amount) {
-            currentHP += amount;
+            currentHP -= amount;
         }
 
         public bool spendRP(int amount) {
