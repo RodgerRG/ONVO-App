@@ -6,22 +6,29 @@ namespace ONVO_App.CombatSimulator
     public class Combat
     {
         private List<CombatCharacter> combatants;
+        private List<Character> players;
+        private List<Character> enemies;
         private int roundNumber;
 
         public Combat() {
             combatants = new List<CombatCharacter>();
+            players = new List<Character>();
+            enemies = new List<Character>();
         }
 
-        public void addCombatant(Character c) {
+        public void addPlayer(Character c) {
             CombatCharacter character = new CombatCharacter(c);
             if(!combatants.Contains(character)) {
                 combatants.Add(character);
+                players.Add(c);
             }
         }
 
-        public void addCombatants(List<Character> characters) {
-            foreach(Character c in characters) {
-                addCombatant(c);
+        public void addEnemy(Character c) {
+            CombatCharacter character = new CombatCharacter(c);
+            if(!combatants.Contains(character)) {
+                combatants.Add(character);
+                enemies.Add(c);
             }
         }
 
@@ -34,7 +41,7 @@ namespace ONVO_App.CombatSimulator
                 bool isJousting = false;
                 foreach(Action act in actions) {
                     //detect if a joust is potentially occurring. 
-                    if(act.getSource() == target && act.getTarget() == source) {
+                    if(act.getSource() == target && act.getTarget() == source && !((players.Contains(act.getSource()) && players.Contains(act.getTarget())) || (enemies.Contains(act.getSource()) && enemies.Contains(act.getTarget())))) {
                         isJousting = true;
                         resolveJoust(a, act);
                         actions.Remove(act);
@@ -45,7 +52,6 @@ namespace ONVO_App.CombatSimulator
                 if(!isJousting) {
                     resolveAction(a);
                 }
-                
             }
         }
 
