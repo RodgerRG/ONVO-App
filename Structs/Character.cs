@@ -14,7 +14,6 @@ namespace ONVO_App.Structs
         protected int currentRP;
         protected int rpMod;
         protected string quirk;
-
         protected Skill[] skills;
 
         public Character(int charisma, int power, int speed, int technique, int intelligence, int maxHP, int maxRP, int startingRP, int rpMod) {

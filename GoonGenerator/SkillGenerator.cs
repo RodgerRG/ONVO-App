@@ -136,7 +136,7 @@ namespace ONVO_App.GoonGenerator
                 }
             }
 
-            return new Skill(cost, damage, keywords.ToArray(Type.GetType("System.String")) as string[], isDispel, burnCount, bleedCount, blightCount);
+            return new Skill(cost, damage, keywords.ToArray(Type.GetType("System.String")) as string[], isDispel, burnCount, bleedCount, blightCount, -1, false);
         }
 
         private void makeKeywordTable() {

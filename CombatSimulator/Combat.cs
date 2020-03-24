@@ -33,6 +33,8 @@ namespace ONVO_App.CombatSimulator
         }
 
         public void resolveActions(List<Action> actions) {
+            resolveBlights();
+            
             foreach(Action a in actions) {
                 Character source = a.getSource();
                 Character target = a.getTarget();
@@ -40,6 +42,8 @@ namespace ONVO_App.CombatSimulator
 
                 bool isJousting = false;
                 foreach(Action act in actions) {
+                    //resolve DOT effects for the character acting
+                    resolveDOTs(act.getSource());
                     //detect if a joust is potentially occurring. 
                     if(act.getSource() == target && act.getTarget() == source && !((players.Contains(act.getSource()) && players.Contains(act.getTarget())) || (enemies.Contains(act.getSource()) && enemies.Contains(act.getTarget())))) {
                         isJousting = true;
@@ -55,10 +59,25 @@ namespace ONVO_App.CombatSimulator
             }
         }
 
+        private void resolveBlights() {
+            foreach(CombatCharacter c in combatants) {
+                c.applyBlight();
+            }
+        }
+
+        private void resolveDOTs(Character c) {
+            foreach(CombatCharacter character in combatants) {
+                if(character.getCharacter().Equals(c)) {
+                    character.applyDOTs();
+                    return;
+                }
+            }
+        }
+
         private bool isRoundOver() {
             bool isOver = true;
             foreach(CombatCharacter c in combatants) {
-                if(c.getCharacter().getCurrentRP() != 0) {
+                if(c.canMakeAction()) {
                     isOver = false;
                 }
             }
@@ -119,6 +138,35 @@ namespace ONVO_App.CombatSimulator
             combatant.addBlight(skill.getBlight());
             combatant.addBurn(skill.getBurn());
             combatant.applyDamage(skill.getDamage());
+
+            resolveHidden(action);
+        }
+
+        private void resolveHidden(Action action) {
+            //if the source character of the skill is hidden, they are no longer hidden unless the skill is also hidden or the target is themselves.
+            if(action.getSource() != action.getTarget()) {
+                if(!action.GetSkill().getHidden()) {
+                    foreach(CombatCharacter character in combatants) {
+                        if(character.getCharacter().Equals(action.getSource())) {
+                            if(character.getHidden()) {
+                                character.toggleHidden();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //resolve if the skill would dispel hidden from the target.
+            foreach(CombatCharacter c in combatants) {
+                if(c.getCharacter().Equals(action.getTarget())) {
+                    if(c.getHidden() && action.GetSkill().IsDispel() && action.GetSkill().getHidden()) {
+                        c.toggleHidden();
+                    } else if(!c.getHidden() && action.GetSkill().getHidden()) {
+                        c.toggleHidden();
+                    }
+                }
+            }
         }
 
         private JoustType stringToJoustType(string s) {
